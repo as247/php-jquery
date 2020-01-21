@@ -22,7 +22,7 @@ class Selector
      *
      * @var string
      */
-    protected $pattern = "/([\w-:\*>]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)[\"']?(.*?)[\"']?)?\])?([\/, ]+)/is";
+    protected $pattern = "/([\w\-:\*>]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?(!?[\w\-:]+)(?:([!*^$]?=)[\"']?(.*?)[\"']?)?\])?([\/, ]+)/is";
 
     protected $selectors = [];
 
@@ -170,8 +170,8 @@ class Selector
     protected function seek(array $nodes, array $rule, array $options)
     {
         // XPath index
-        if (count($rule['tag']) > 0 &&
-            count($rule['key']) > 0 &&
+        if (!empty($rule['tag']) &&
+            !empty($rule['key']) &&
             is_numeric($rule['key'])
         ) {
             $count = 0;
